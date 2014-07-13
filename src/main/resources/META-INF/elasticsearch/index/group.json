@@ -49,6 +49,11 @@
     "mappings": {
         "group": {
             "properties": {
+                "prefix" : {
+                    "type" : "string",
+                    "index_analyzer" : "prefixIndex",
+                    "search_analyzer" : "prefixSearch"
+                },
                 "groupId": {
                     "type": "string",
                     "index": "not_analyzed",
@@ -59,20 +64,12 @@
                     "analyzer": "lowercase"
                 },
                 "name": {
-                    "type": "multi_field",
-                    "path": "just_name",
+                    "type": "string",
+                    "copy_to": "prefix",
                     "fields": {
-                        "name": {
-                            "type": "string"
-                        },
-                        "name-not-analyzed": {
+                        "sortable": {
                             "type": "string",
                             "analyzer": "lowercase"
-                        },
-                        "prefix" : {
-                            "type" : "string",
-                            "index_analyzer" : "prefixIndex",
-                            "search_analyzer" : "prefixSearch"
                         }
                     }
                 },

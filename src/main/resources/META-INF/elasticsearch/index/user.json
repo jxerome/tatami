@@ -49,6 +49,11 @@
     "mappings": {
         "user": {
             "properties": {
+                "prefix" : {
+                    "type" : "string",
+                    "index_analyzer" : "prefixIndex",
+                    "search_analyzer" : "prefixSearch"
+                },
                 "login": {
                     "type": "string",
                     "analyzer": "lowercase",
@@ -60,49 +65,19 @@
                     "include_in_all": false
                 },
                 "username": {
-                    "type" : "multi_field",
-                    "path" : "just_name",
-                    "fields" : {
-                        "username": {
-                            "type" : "string",
-                            "analyzer" : "lowercase"
-                        },
-                        "prefix" : {
-                            "type" : "string",
-                            "index_analyzer" : "prefixIndex",
-                            "search_analyzer" : "prefixSearch"
-                        }
-                    }
+                    "type" : "string",
+                    "analyzer" : "lowercase",
+                    "copy_to": "prefix"
                 },
                 "firstName": {
-                    "type" : "multi_field",
-                    "path" : "just_name",
-                    "fields" : {
-                        "firstName": {
-                            "type": "string",
-                            "analyzer" : "default"
-                        },
-                        "prefix" : {
-                            "type" : "string",
-                            "index_analyzer" : "prefixIndex",
-                            "search_analyzer" : "prefixSearch"
-                        }
-                    }
+                    "type": "string",
+                    "analyzer" : "default",
+                    "copy_to": "prefix"
                 },
                 "lastName": {
-                    "type" : "multi_field",
-                    "path" : "just_name",
-                    "fields" : {
-                        "lastName": {
-                            "type": "string",
-                            "analyzer" : "default"
-                        },
-                        "prefix" : {
-                            "type" : "string",
-                            "index_analyzer" : "prefixIndex",
-                            "search_analyzer" : "prefixSearch"
-                        }
-                    }
+                    "type": "string",
+                    "analyzer" : "default",
+                    "copy_to": "prefix"
                 }
             }
          }
